@@ -378,7 +378,7 @@ module Rake
 
     def sort_options(options) # :nodoc:
       options.sort_by { |opt|
-        opt.select { |o| o =~ /^-/ }.map { |o| o.downcase }.sort.reverse
+        opt.select { |o| o.is_a?(String) && o =~ /^-/ }.map(&:downcase).sort.reverse
       }
     end
     private :sort_options
