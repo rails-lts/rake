@@ -479,13 +479,15 @@ class TestRakeFileList < Rake::TestCase
     assert_equal ['a', 'b', 'c'], d
   end
 
-  def test_dup_and_clone_replicate_taint
-    a = FileList['a', 'b', 'c']
-    a.taint
-    c = a.clone
-    d = a.dup
-    assert c.tainted?, "Clone should be tainted"
-    assert d.tainted?, "Dup should be tainted"
+  if RUBY_VERSION < '2.7'
+    def test_dup_and_clone_replicate_taint
+      a = FileList["a", "b", "c"]
+      a.taint
+      c = a.clone
+      d = a.dup
+      assert c.tainted?, "Clone should be tainted"
+      assert d.tainted?, "Dup should be tainted"
+    end
   end
 
   def test_duped_items_will_thaw
