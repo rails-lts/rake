@@ -30,6 +30,18 @@ Rake has the following features:
 
 * Supports parallel execution of tasks.
 
+== LTS version
+
+This is a fork of the official {rake gem}[https://github.com/ruby/rake] with a backported security fix for:
+- rack 1.10.5 (CVE-2020-8130)
+
+This is useful, if you need a security-patched version of Rails that is still compatible with Ruby 1.8.7.
+
+To use it, you need to add it in your Gemfile like this:
+
+  gem 'rake', :git => 'https://github.com/rails-lts/rake.git', :branch => 'v10-lts'
+
+
 == Installation
 
 === Gem Installation
