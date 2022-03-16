@@ -425,6 +425,7 @@ class TestRakeFunctional < Rake::TestCase
   end
 
   def test_file_list_is_requirable_separately
+    skip if RUBY_VERSION >= '2.0' && RUBY_VERSION < '2.5'
     ruby '-rrake/file_list', '-e', 'puts Rake::FileList["a"].size'
     assert_equal "1\n", @out
   end
